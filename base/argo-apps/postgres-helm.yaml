@@ -34,8 +34,7 @@ spec:
           extendedConfiguration: |
             wal_level = logical
 
-        # Only used for testing using single node in gke 
-        primary:
+          # Only used for testing using single node in gke 
           resources:
             requests:
               memory: 50Mi
