@@ -35,9 +35,9 @@ spec:
 
     
 
-"cert-manager/challenges/acceptChallenge: e
-rror waiting for authorization","resource_name":"cloud-diplomate-tls-1-516862663-1969314671",
-"dnsName":"api-test.cloud-diplomate.com","type":"HTTP-01",
-"err":"acme: authorization error for api-test.cloud-diplomate.com: 400 urn:ietf:params:acme:error:connection: 35.237.125.231: 
-Fetching http://api-test.cloud-diplomate.com/.well-known/acme-challenge/KBsdmbvTgjBHJ0TnsPijID3iGp_4znaCON_hu1vbN5k: Timeout during connect (likely firewall problem)"}
+# "cert-manager/challenges/acceptChallenge: e
+# rror waiting for authorization","resource_name":"cloud-diplomate-tls-1-516862663-1969314671",
+# "dnsName":"api-test.cloud-diplomate.com","type":"HTTP-01",
+# "err":"acme: authorization error for api-test.cloud-diplomate.com: 400 urn:ietf:params:acme:error:connection: 35.237.125.231: 
+# Fetching http://api-test.cloud-diplomate.com/.well-known/acme-challenge/KBsdmbvTgjBHJ0TnsPijID3iGp_4znaCON_hu1vbN5k: Timeout during connect (likely firewall problem)"}
 
