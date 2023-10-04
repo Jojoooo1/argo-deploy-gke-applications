@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres
+  namespace: argocd
+
+  # Add this finalizer ONLY if you want these to cascade delete (A cascade delete, deletes both the app and its resources, rather than only the app.)
+  # finalizers:
+  #   - resources-finalizer.argocd.argoproj.io
+
+spec:
+  project: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+
+  source:
+    chart: postgresql
+    repoURL: registry-1.docker.io/bitnamicharts
+    targetRevision: 12.9.0
+
+    # https://github.com/bitnami/charts/tree/main/bitnami/postgresql
+    helm:
+      valuesObject:
+        fullnameOverride: postgres
+        auth:
+          postgresPassword: password
+          database: api
+          username: user
+          password: password
+        primary:
+          # Activate logical replication in order to test CDC
+          extendedConfiguration: |
+            wal_level = logical
+
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: postgres

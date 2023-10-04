@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-configs
+  namespace: default
+data:
+
+  # https://jdbc-observations.github.io/datasource-micrometer/docs/current/docs/html/#appendix-common-application-properties
+  jdbc.datasource-proxy.enabled: "true"
+  jdbc.datasource-proxy.include-parameter-values: "true"
+  jdbc.includes: QUERY, FETCH # CONNECTION, QUERY, FETCH
+  # jdbc.datasource-proxy.query.enable-logging: "true"
+  # jdbc.datasource-proxy.query.log-level: "INFO"
