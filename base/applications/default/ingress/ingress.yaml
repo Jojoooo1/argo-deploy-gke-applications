@@ -6,13 +6,13 @@ metadata:
   annotations:
     # SSL
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 
     # Body
     nginx.ingress.kubernetes.io/proxy-body-size: 25m
 
     # Note: add retry for http_502 (with large volume 502 can happen so we add a retry.)
-    # nginx.ingress.kubernetes.io/proxy-next-upstream: "error timeout http_502"
+    nginx.ingress.kubernetes.io/proxy-next-upstream: "error timeout http_502"
 
 spec:
   ingressClassName: nginx
