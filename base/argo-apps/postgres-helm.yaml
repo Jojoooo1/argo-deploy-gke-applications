@@ -33,10 +33,12 @@ spec:
           # Activate logical replication in order to test CDC
           extendedConfiguration: |
             wal_level = logical
-        resources:
-          requests:
-            memory: 50Mi
-            cpu: 50m
+            
+        primary:
+          resources:
+            requests:
+              memory: 50Mi
+              cpu: 50m
 
   destination:
     server: "https://kubernetes.default.svc"
