@@ -33,7 +33,8 @@ spec:
           # Activate logical replication in order to test CDC
           extendedConfiguration: |
             wal_level = logical
-            
+
+        # Only used for testing using single node in gke 
         primary:
           resources:
             requests:
