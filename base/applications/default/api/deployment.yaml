@@ -73,12 +73,12 @@ spec:
                 path: actuator/preStopHook/10000
                 port: metrics
 
-          resources:
-            requests:
-              memory: 768Mi
-              cpu: 500m
-            limits:
-              memory: 768Mi
+          # resources:
+          #   requests:
+          #     memory: 768Mi
+          #     cpu: 500m
+          #   limits:
+          #     memory: 768Mi
 
           volumeMounts:
             - name: tmp-volume
