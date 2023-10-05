@@ -9,7 +9,8 @@ metadata:
 
 spec:
   rules:
-  - http:
+  - host: gce.cloud-diplomate.com
+    http:
       paths:
       - path: /*
         pathType: ImplementationSpecific
