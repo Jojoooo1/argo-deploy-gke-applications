@@ -26,9 +26,19 @@ spec:
         app: hello-world
     spec:
       containers:
-      - image: nginx:latest
-        name: nginx
-        ports:
-        - containerPort: 80
-          name: nginx
+      - name: nginx
+        image: nginx:latest
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+            httpHeaders:
+          initialDelaySeconds: 3
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 80
+          initialDelaySeconds: 3
+          periodSeconds: 3
   
