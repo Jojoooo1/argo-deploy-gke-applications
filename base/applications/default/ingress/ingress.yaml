@@ -6,6 +6,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: gce
     kubernetes.io/ingress.global-static-ip-name: "cl-dpl-service-test-rap0-k8s-test-gce-ingress"
+    kubernetes.io/ingress.allow-http: "true"
 
 spec:
   rules:
