@@ -16,10 +16,10 @@ metadata:
 
 spec:
   ingressClassName: nginx
-  tls:
-    - secretName: cloud-diplomate-test-tls
-      hosts:
-        - test.cloud-diplomate.com
+  # tls:
+  #   - secretName: cloud-diplomate-test-tls
+  #     hosts:
+  #       - test.cloud-diplomate.com
 
   rules:
     - host: test.cloud-diplomate.com
