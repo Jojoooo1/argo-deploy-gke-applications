@@ -14,7 +14,7 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: api
+            name: hello-world-service
             port:
               number: 80
 ---
@@ -27,15 +27,15 @@ spec:
 #   timeoutSec: 40
 #   connectionDraining:
 #     drainingTimeoutSec: 60
----
-apiVersion: networking.gke.io/v1
-kind: ManagedCertificate
-metadata:
-  name: cl-dpl-tls
-  namespace: default
-spec:
-  domains:
-    - api-test.cloud-diplomate.com.cloud-diplomate.com.br
+# ---
+# apiVersion: networking.gke.io/v1
+# kind: ManagedCertificate
+# metadata:
+#   name: cl-dpl-tls
+#   namespace: default
+# spec:
+#   domains:
+#     - api-test.cloud-diplomate.com.cloud-diplomate.com.br
 
 
 
