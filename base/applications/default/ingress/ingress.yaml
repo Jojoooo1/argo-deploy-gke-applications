@@ -15,19 +15,9 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: hello-world-service
+            name: hello-world
             port:
               number: 80
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: my-backendconfig
-  namespace: default
-spec:
-  timeoutSec: 40
-  connectionDraining:
-    drainingTimeoutSec: 60
 # ---
 # apiVersion: networking.gke.io/v1
 # kind: ManagedCertificate
