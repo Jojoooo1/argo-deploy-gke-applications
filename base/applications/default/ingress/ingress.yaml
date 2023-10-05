@@ -8,8 +8,7 @@ metadata:
     kubernetes.io/ingress.allow-http: "true"
 spec:
   rules:
-  - host: api-test.cloud-diplomate.com
-    http:
+  - http:
       paths:
       - path: /*
         pathType: ImplementationSpecific
@@ -23,10 +22,22 @@ apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
   name: my-backendconfig
+  namespace: default
 spec:
   timeoutSec: 40
   connectionDraining:
     drainingTimeoutSec: 60
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: cl-dpl-tls
+  namespace: default
+spec:
+  domains:
+    - api-test.cloud-diplomate.com.cloud-diplomate.com.br
+
+
 
 # apiVersion: networking.k8s.io/v1
 # kind: Ingress
