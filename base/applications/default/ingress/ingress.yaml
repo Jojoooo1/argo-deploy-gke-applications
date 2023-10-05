@@ -1,37 +1,54 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-default
+  name: ingress
   namespace: default
-  annotations:
-    # SSL
-    # cert-manager.io/cluster-issuer: letsencrypt-prod
-    # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-
-    # Body
-    nginx.ingress.kubernetes.io/proxy-body-size: 25m
-
-    # Note: add retry for http_502 (with large volume 502 can happen so we add a retry.)
-    nginx.ingress.kubernetes.io/proxy-next-upstream: "error timeout http_502"
-
 spec:
-  ingressClassName: nginx
-  # tls:
-  #   - secretName: cloud-diplomate-tls
-  #     hosts:
-  #       - api-test.cloud-diplomate.com
-
   rules:
-    - host: api-test.cloud-diplomate.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: api
-                port:
-                  number: 80
+  - http:
+      paths:
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: api
+            port:
+              number: 80
+
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: ingress-default
+#   namespace: default
+#   annotations:
+#     # SSL
+#     # cert-manager.io/cluster-issuer: letsencrypt-prod
+#     # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+
+#     # Body
+#     nginx.ingress.kubernetes.io/proxy-body-size: 25m
+
+#     # Note: add retry for http_502 (with large volume 502 can happen so we add a retry.)
+#     nginx.ingress.kubernetes.io/proxy-next-upstream: "error timeout http_502"
+
+# spec:
+#   ingressClassName: nginx
+#   tls:
+#     - secretName: cloud-diplomate-tls
+#       hosts:
+#         - api-test.cloud-diplomate.com
+
+#   rules:
+#     - host: api-test.cloud-diplomate.com
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: api
+#                 port:
+#                   number: 80
 
     
 
