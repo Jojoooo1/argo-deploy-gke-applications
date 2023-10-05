@@ -1,0 +1,43 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-default
+  namespace: default
+  annotations:
+    # SSL
+    # cert-manager.io/cluster-issuer: letsencrypt-prod
+    # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+
+    # Body
+    nginx.ingress.kubernetes.io/proxy-body-size: 25m
+
+    # Note: add retry for http_502 (with large volume 502 can happen so we add a retry.)
+    nginx.ingress.kubernetes.io/proxy-next-upstream: "error timeout http_502"
+
+spec:
+  ingressClassName: nginx
+  tls:
+    - secretName: cloud-diplomate-tls
+      hosts:
+        - test.cloud-diplomate.com
+
+  rules:
+    - host: test.cloud-diplomate.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: api
+                port:
+                  number: 80
+
+    
+
+# "cert-manager/challenges/acceptChallenge: e
+# rror waiting for authorization","resource_name":"cloud-diplomate-tls-1-516862663-1969314671",
+# "dnsName":"api-test.cloud-diplomate.com","type":"HTTP-01",
+# "err":"acme: authorization error for api-test.cloud-diplomate.com: 400 urn:ietf:params:acme:error:connection: 35.237.125.231: 
+# Fetching http://api-test.cloud-diplomate.com/.well-known/acme-challenge/KBsdmbvTgjBHJ0TnsPijID3iGp_4znaCON_hu1vbN5k: Timeout during connect (likely firewall problem)"}
+
