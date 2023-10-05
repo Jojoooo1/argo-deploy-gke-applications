@@ -19,7 +19,7 @@ spec:
   tls:
     - secretName: cloud-diplomate-test-tls
       hosts:
-        - test.cloud-diplomate.com
+        - nginx.cloud-diplomate.com
 
   rules:
     - host: nginx.cloud-diplomate.com
