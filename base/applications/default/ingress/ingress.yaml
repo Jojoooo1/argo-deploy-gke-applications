@@ -3,9 +3,13 @@ kind: Ingress
 metadata:
   name: ingress
   namespace: default
+  annotations:
+    kubernetes.io/ingress.class: gce
+    kubernetes.io/ingress.allow-http: "true"
 spec:
   rules:
-  - http:
+  - host: api-test.cloud-diplomate.com
+    http:
       paths:
       - path: /*
         pathType: ImplementationSpecific
