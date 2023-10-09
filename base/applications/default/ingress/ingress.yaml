@@ -10,7 +10,7 @@ metadata:
 
 spec:
   rules:
-  - host: gce.cloud-diplomate.com
+  - host: test.cloud-diplomate.com
     http:
       paths:
       - path: /*
