@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: cloud-diplomate
 
 resources:
-  - ../../../base/applications/cloud-diplomate/ns
+  - ../../../base/applications/cloud-diplomate/ns.yaml
   - ../../../base/applications/cloud-diplomate/api
   - ../../../base/applications/cloud-diplomate/ingress
   # - ../../../base/applications/cloud-diplomate/microservice-webhook
