@@ -1,0 +1,43 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-default
+  namespace: cloud-diplomate
+  
+  annotations:
+    # SSL
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+
+    # Body
+    nginx.ingress.kubernetes.io/proxy-body-size: 25m
+
+    # Sticky session
+    # nginx.ingress.kubernetes.io/affinity: "cookie"
+    # nginx.ingress.kubernetes.io/session-cookie-name: "nginx-sticky-cookie"
+    # nginx.ingress.kubernetes.io/session-cookie-expires: "86400"
+    # nginx.ingress.kubernetes.io/session-cookie-max-age: "86400"
+
+    # Note: add retry for http_502 (with large volume 502 can happen so we add a retry.)
+    nginx.ingress.kubernetes.io/proxy-next-upstream: "error timeout http_502"
+
+spec:
+  ingressClassName: nginx
+  tls:
+    - secretName: default-tls
+      hosts:
+        - api${ARGOCD_ENV_DNS}.cloud-diplomate.com.br
+
+  rules:
+    - host: api${ARGOCD_ENV_DNS}.cloud-diplomate.com.br
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: api
+                port:
+                  number: 80
+
+    

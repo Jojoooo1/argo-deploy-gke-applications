@@ -1,8 +1,9 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: api
-  namespace: default
+  name: microservice-webhook
+  namespace: cloud-diplomate
+  
   labels:
     prometheus.io/scrap-with: kube-prometheus-stack
 spec:
@@ -17,4 +18,4 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/component: microservice
-      app.kubernetes.io/name: api
+      app.kubernetes.io/name: microservice-webhook

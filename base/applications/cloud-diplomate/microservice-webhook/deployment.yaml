@@ -2,7 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: microservice-webhook
-  namespace: default
+  namespace: cloud-diplomate
+  
   labels:
     app.kubernetes.io/component: microservice
     app.kubernetes.io/name: microservice-webhook

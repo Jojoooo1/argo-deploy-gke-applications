@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: api-configs
-  namespace: default
+  namespace: cloud-diplomate
 data:
 
   # https://jdbc-observations.github.io/datasource-micrometer/docs/current/docs/html/#appendix-common-application-properties

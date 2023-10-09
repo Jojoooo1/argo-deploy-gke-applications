@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: spring-namespace-reader
-  namespace: default
+  namespace: cloud-diplomate
   # annotations:
   # In case your spring app need to access GCP resources you can set this annotation and link it with a GCP service account.
   # iam.gke.io/gcp-service-account: postgres-client@your-project.iam.gserviceaccount.com
