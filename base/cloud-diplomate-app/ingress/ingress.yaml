@@ -26,10 +26,10 @@ spec:
   tls:
     - secretName: default-tls
       hosts:
-        - api${ARGOCD_ENV_DNS}.cloud-diplomate.com.br
+        - api${ARGOCD_ENV_DNS}.cloud-diplomate.com
 
   rules:
-    - host: api${ARGOCD_ENV_DNS}.cloud-diplomate.com.br
+    - host: api${ARGOCD_ENV_DNS}.cloud-diplomate.com
       http:
         paths:
           - path: /
