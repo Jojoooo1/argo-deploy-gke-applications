@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: applications
+  name: cloud-diplomate-app
   namespace: argocd
   annotations:
     # ArgoCD image updater configuration
@@ -22,6 +22,7 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - PrunePropagationPolicy=foreground
+    
   source:
     repoURL: https://github.com/Jojoooo1/argo-deploy-applications-gke.git
     targetRevision: main
@@ -41,4 +42,4 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: cloud-diplomate
