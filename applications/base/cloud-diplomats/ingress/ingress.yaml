@@ -30,7 +30,7 @@ spec:
   tls:
     - secretName: cloud-diplomats-tls
       hosts:
-        - api${ARGOCD_ENV_DNS}.cloud-diplomats.com
+        # - api${ARGOCD_ENV_DNS}.cloud-diplomats.com
         - hello-world${ARGOCD_ENV_DNS}.cloud-diplomats.com
 
   rules:
