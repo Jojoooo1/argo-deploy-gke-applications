@@ -5,4 +5,3 @@ namespace: cloud-diplomats
 
 resources:
   - ingress.yaml
-  - cert-issuer.yaml
