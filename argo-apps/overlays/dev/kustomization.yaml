@@ -4,6 +4,6 @@ kind: Kustomization
 namespace: argocd
 
 resources:
-  - ../../argo-apps/base/cloud-diplomats-app.yaml
-  - ../../argo-apps/base/postgres-helm.yaml
+  - ../../../argo-apps/base/cloud-diplomats-app.yaml
+  - ../../../argo-apps/base/postgres-helm.yaml
 
