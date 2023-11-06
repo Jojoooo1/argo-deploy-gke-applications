@@ -34,16 +34,17 @@ spec:
         - hello-world${ARGOCD_ENV_DNS}.cloud-diplomats.com
 
   rules:
-    - host: api${ARGOCD_ENV_DNS}.cloud-diplomats.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: api
-                port:
-                  number: 80
+    # - host: api${ARGOCD_ENV_DNS}.cloud-diplomats.com
+    #   http:
+    #     paths:
+    #       - path: /
+    #         pathType: Prefix
+    #         backend:
+    #           service:
+    #             name: api
+    #             port:
+    #               number: 80
+
     - host: hello-world${ARGOCD_ENV_DNS}.cloud-diplomats.com
       http:
         paths:
@@ -51,7 +52,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: api
+                name: hello-world
                 port:
                   number: 80
 
