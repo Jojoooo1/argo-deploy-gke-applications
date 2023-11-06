@@ -25,5 +25,5 @@ spec:
           image: karthequian/helloworld:latest
           ports:
             - name: container-port
-              containerPort: 8080
+              containerPort: 80
  
