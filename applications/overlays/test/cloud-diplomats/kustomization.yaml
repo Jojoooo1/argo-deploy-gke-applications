@@ -4,8 +4,8 @@ kind: Kustomization
 namespace: cloud-diplomats
 
 resources:
-  # - ../../../applications/base/cloud-diplomats/api
-  - ../../../applications/base/cloud-diplomats/hello-world
-  - ../../../applications/base/cloud-diplomats/ingress
-  # ../- ../../applications/base/cloud-diplomats/webhook
-  # - ../../../applications/base/cloud-diplomats/rbac
+  # - ../../../../applications/base/cloud-diplomats/api
+  - ../../../../applications/base/cloud-diplomats/hello-world
+  - ../../../../applications/base/cloud-diplomats/ingress
+  # ../- ../../../applications/base/cloud-diplomats/webhook
+  # - ../../../../applications/base/cloud-diplomats/rbac
