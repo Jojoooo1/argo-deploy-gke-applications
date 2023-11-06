@@ -19,6 +19,7 @@ spec:
       labels:
         app.kubernetes.io/component: microservice
         app.kubernetes.io/name: hello-world
+    spec:
       containers:
         - name: helloworld
           image: karthequian/helloworld:latest
