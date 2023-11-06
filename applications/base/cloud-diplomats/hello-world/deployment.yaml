@@ -20,7 +20,7 @@ spec:
         app.kubernetes.io/component: microservice
         app.kubernetes.io/name: hello-world
       containers:
-        - name: hello-world
+        - name: helloworld
           image: karthequian/helloworld:latest
           ports:
             - name: container-port
