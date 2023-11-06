@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webhook
+  namespace: cloud-diplomats
+  
+  labels:
+    app.kubernetes.io/component: microservice
+    app.kubernetes.io/name: webhook
+    app.kubernetes.io/managed-by: platform
+spec:
+  revisionHistoryLimit: 3
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: microservice
+      app.kubernetes.io/name: webhook
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: microservice
+        app.kubernetes.io/name: webhook
+    spec:
+      containers:
+        - name: webhook
+          image: jojoooo1/webhook:1.0-6713
+          env:
+            - name: "MANAGEMENT_SERVER_PORT"
+              value: "8082"
+            - name: "MANAGEMENT_ENDPOINT_HEALTH_GROUP_READINESS_INCLUDE"
+              value: "rabbit"
+            # - name: "MANAGEMENT_ENDPOINT_HEALTH_GROUP_LIVENESS_INCLUDE"
+            #   value: "rabbit"
+          envFrom:
+            - secretRef:
+                name: webhook-configs
+
+          ports:
+            - name: container-port
+              containerPort: 8081
+            - name: metrics
+              containerPort: 8082
+
+          readinessProbe:
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            httpGet:
+              path: /actuator/health/readiness
+              port: metrics
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: metrics
+            initialDelaySeconds: 15
+            periodSeconds: 10
+
+          lifecycle:
+            preStop:
+              httpGet:
+                path: actuator/preStopHook/10000
+                port: metrics
+
+          resources:
+            requests:
+              memory: 768Mi
+              cpu: 500m
+            limits:
+              memory: 768Mi
+
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            runAsNonRoot: true
+            runAsUser: 1000

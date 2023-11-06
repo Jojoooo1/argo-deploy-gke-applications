@@ -1,0 +1,100 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  namespace: cloud-diplomats
+  
+  labels:
+    app.kubernetes.io/component: microservice
+    app.kubernetes.io/name: api
+    app.kubernetes.io/managed-by: Jonathan
+spec:
+  revisionHistoryLimit: 3
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: microservice
+      app.kubernetes.io/name: api
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: microservice
+        app.kubernetes.io/name: api
+      annotations:
+        linkerd.io/inject: enabled
+        # loki.io/scrape: "true"
+    spec:
+      serviceAccountName: spring-namespace-reader
+      containers:
+        - name: api
+          image: jojoooo1/api:9.0-6ccd
+          env:
+            - name: "MANAGEMENT_SERVER_PORT"
+              value: "8081"
+            # - name: "MANAGEMENT_ENDPOINT_HEALTH_GROUP_READINESS_INCLUDE"
+            #   value: "rabbit"
+
+            - name: "MANAGEMENT_TRACING_SAMPLING_PROBABILITY"
+              value: "1"
+            - name: "MANAGEMENT_OTLP_TRACING_ENDPOINT"
+              value: "http://tempo.observability:4317"
+
+            # Needed when database schema is not empty
+            - name: "SPRING_FLYWAY_BASELINE_ON_MIGRATE"
+              value: "true"
+
+          envFrom:
+            - configMapRef:
+                name: api-configs
+            - secretRef:
+                name: api-configs
+
+          ports:
+            - name: container-port
+              containerPort: 8080
+            - name: metrics
+              containerPort: 8081
+
+          readinessProbe:
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            httpGet:
+              path: /actuator/health/readiness
+              port: metrics
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: metrics
+            initialDelaySeconds: 15
+            periodSeconds: 10
+
+          lifecycle:
+            preStop:
+              httpGet:
+                path: actuator/preStopHook/10000
+                port: metrics
+
+          # resources:
+          #   requests:
+          #     memory: 768Mi
+          #     cpu: 500m
+          #   limits:
+          #     memory: 768Mi
+
+          volumeMounts:
+            - name: tmp-volume
+              mountPath: /tmp
+
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            runAsNonRoot: true
+            runAsUser: 1000
+
+      # Necessary for readOnly system
+      volumes:
+        - name: tmp-volume
+          emptyDir: {}    

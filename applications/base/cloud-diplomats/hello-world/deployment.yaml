@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world
+  namespace: cloud-diplomats
+  labels:
+    app.kubernetes.io/component: microservice
+    app.kubernetes.io/name: hello-world
+    app.kubernetes.io/managed-by: platform
+spec:
+  revisionHistoryLimit: 3
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: microservice
+      app.kubernetes.io/name: hello-world
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: microservice
+        app.kubernetes.io/name: hello-world
+      containers:
+        - name: hello-world
+          image: karthequian/helloworld:latest
+          ports:
+            - name: container-port
+              containerPort: 8080
+ 

@@ -1,0 +1,16 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-prod
+  namespace: cloud-diplomats
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: platform@cloud-diplomats.com
+    privateKeySecretRef:
+      name: letsencrypt-prod
+
+    solvers:
+      - http01:
+          ingress:
+            class: nginx
