@@ -23,18 +23,18 @@ metadata:
 
     # Warning: be very carefull with DNS collisions since it will replace any existing DNS
     external-dns.alpha.kubernetes.io/ingress-hostname-source: annotation-only # DO NOT REMOVE TO PREVENT UNWANTED BEHAVIOR
-    external-dns.alpha.kubernetes.io/hostname: api${ARGOCD_ENV_DNS}.cloud-diplomats.com
+    external-dns.alpha.kubernetes.io/hostname: api${ARGOCD_ENV_DNS_ENV}.cloud-diplomats.com
 
 spec:
   ingressClassName: nginx
   tls:
     - secretName: cloud-diplomats-tls
       hosts:
-        # - api${ARGOCD_ENV_DNS}.cloud-diplomats.com
-        - hello-world${ARGOCD_ENV_DNS}.cloud-diplomats.com
+        # - api${ARGOCD_ENV_DNS_ENV}.cloud-diplomats.com
+        - hello-world${ARGOCD_ENV_DNS_ENV}.cloud-diplomats.com
 
   rules:
-    # - host: api${ARGOCD_ENV_DNS}.cloud-diplomats.com
+    # - host: api${ARGOCD_ENV_DNS_ENV}.cloud-diplomats.com
     #   http:
     #     paths:
     #       - path: /
@@ -45,7 +45,7 @@ spec:
     #             port:
     #               number: 80
 
-    - host: hello-world${ARGOCD_ENV_DNS}.cloud-diplomats.com
+    - host: hello-world${ARGOCD_ENV_DNS_ENV}.cloud-diplomats.com
       http:
         paths:
           - path: /
