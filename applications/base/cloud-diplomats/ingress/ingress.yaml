@@ -22,8 +22,8 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-next-upstream: "error timeout http_502 http_503 http_504"
 
     # Warning: be very carefull with DNS collisions since it will replace any existing DNS
-    # external-dns.alpha.kubernetes.io/ingress-hostname-source: annotation-only # DO NOT REMOVE TO PREVENT UNWANTED BEHAVIOR
-    # external-dns.alpha.kubernetes.io/hostname: api${ARGOCD_ENV_DNS}.cloud-diplomats.com
+    external-dns.alpha.kubernetes.io/ingress-hostname-source: annotation-only # DO NOT REMOVE TO PREVENT UNWANTED BEHAVIOR
+    external-dns.alpha.kubernetes.io/hostname: api${ARGOCD_ENV_DNS}.cloud-diplomats.com
 
 spec:
   ingressClassName: nginx
