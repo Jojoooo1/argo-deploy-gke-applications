@@ -6,7 +6,7 @@ metadata:
   
   annotations:
     # SSL
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/cluster-issuer: letsencrypt-prod-nginx
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 
     # Body
