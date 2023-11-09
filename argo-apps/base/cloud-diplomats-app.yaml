@@ -37,6 +37,9 @@ spec:
         - name: DNS_ENV
           value: "${ARGOCD_ENV_DNS_ENV}"
 
+        - name: DNS_DOMAIN
+          value: "${ARGOCD_ENV_DNS_DOMAIN}"
+
         - name: PROJECT
           value: "${ARGOCD_ENV_PROJECT}"
 
