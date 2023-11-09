@@ -1,13 +1,23 @@
-# Argo applications personal labs
+# Argo applications GKE labs
 
-## applications
+## Cloud Diplomats ArgoCD Applications
 
-## ArgoCD Folders organization
+### Applications
 
-### Base
+#### Base
 
-- **base/applications**: Contains k8s applications
+- **base/cloud-diplomats**: Contains cloud-diplomats workloads deployed by the ArgoCD applications.
 
-### Overlay
+#### Overlay
+
+Environments folders that inherit from base folder. It uses [kustomize](https://github.com/kubernetes-sigs/kustomize) to allow environment based customization.
+
+### ArgoCD Applications
+
+#### Base
+
+- **base**: Contains ArgoCD Applications
+
+#### Overlay
 
 Environments folders that inherit from base folder. It uses [kustomize](https://github.com/kubernetes-sigs/kustomize) to allow environment based customization.
