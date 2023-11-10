@@ -23,7 +23,7 @@ metadata:
 
     # Warning: be very carefull with DNS collisions since it will replace any existing DNS
     external-dns.alpha.kubernetes.io/ingress-hostname-source: annotation-only # DO NOT REMOVE TO PREVENT UNWANTED BEHAVIOR
-    external-dns.alpha.kubernetes.io/hostname: api${ARGOCD_ENV_DNS_ENV}.${ARGOCD_ENV_DNS_DOMAIN}.com
+    external-dns.alpha.kubernetes.io/hostname: hello-world${ARGOCD_ENV_DNS_ENV}.${ARGOCD_ENV_DNS_DOMAIN}.com
 
 spec:
   ingressClassName: nginx
